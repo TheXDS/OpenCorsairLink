@@ -45,7 +45,7 @@ int print(enum msglevel level, const char *fmt, ...)
 	return 0;
 }
 
-void dump_packet(uint8_t *packet, int size)
+int dump_packet(uint8_t *packet, int size)
 {
 	msg_debug2("\n---- Packet dump: -----------------------------");	
 	for (int8_t j = 0; j < size; j++)
@@ -54,4 +54,6 @@ void dump_packet(uint8_t *packet, int size)
 		msg_debug2("%02x ",packet[j]);
 	}
 	msg_debug2("\n-----------------------------------------------\n");
+
+	return 0;
 }

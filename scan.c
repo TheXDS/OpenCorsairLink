@@ -91,7 +91,6 @@ int corsairlink_device_scanner(libusb_context *context)
 					device->driver->device_id(device, scanlist[scanlist_count].handle, &device_id);
 					/* check to see if the device_id is the right one */
 					if (device->device_id == device_id) {
-						msg_debug("Yes! (device_id 0x%02X)\n", device_id);
 
 						/* if we have the right device id we can setup the rest of
 						 * the device connections
@@ -107,9 +106,7 @@ int corsairlink_device_scanner(libusb_context *context)
 						corsairlink_handle_close(scanlist[scanlist_count].handle);
 						continue;
 					}
-				}
-				else
-				{
+				} else {
 					msg_debug("Could not open device %d:%d.",desc.idVendor,desc.idProduct);
 				}
 			}			
