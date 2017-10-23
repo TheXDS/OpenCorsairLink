@@ -19,8 +19,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <libusb.h>
 #include "print.h"
 #include <stdarg.h>
+
 
 int verbose = MSG_INFO;
 
@@ -41,4 +43,15 @@ int print(enum msglevel level, const char *fmt, ...)
 			fflush(output_type);
 	}
 	return 0;
+}
+
+void dump_packet(uint8_t *packet, int size)
+{
+	msg_debug2("\n---- Packet dump: -----------------------------");	
+	for (int8_t j = 0; j < size; j++)
+	{
+		if(j % 16 == 0) msg_debug2("\n");
+		msg_debug2("%02x ",packet[j]);
+	}
+	msg_debug2("\n-----------------------------------------------\n");
 }
